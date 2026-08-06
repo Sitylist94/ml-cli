@@ -1,0 +1,24 @@
+[package]
+name = "mlcli"
+version = "0.1.0"
+edition = "2021"
+authors = ["Sitylist94"]
+description = "Générateur de structure de projet ML/DL personnalisé"
+license = "MIT"
+
+[dependencies]
+anyhow = "1.0.104"
+clap = { version = "4.6.6", features = ["derive", "color"] }
+colored = "3.1.1"
+indicatif = "0.18.6"
+inquire = "0.9.4"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_yaml = "0.9.34"
+tera = "2.1.0"
+thiserror = "2.0.19"
+walkdir = "2.5.0"
+
+[dev-dependencies]
+assert_cmd = "2.2.2"
+predicates = "3.1.4"
+tempfile = "3.27.0"
