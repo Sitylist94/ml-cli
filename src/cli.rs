@@ -17,5 +17,31 @@ enum Commands {
 }
 
 pub fn run() {
-    let _cli = Cli::parse();
+    let cli = Cli::parse();
+
+    match cli.command {
+        Commands::Init => {
+            crate::commands::init::run();
+        }
+
+        Commands::Add => {
+            todo!()
+        }
+
+        Commands::Remove => {
+            todo!()
+        }
+
+        Commands::Validate => {
+            todo!()
+        }
+
+        Commands::Doctor => {
+            todo!()
+        }
+
+        Commands::Template => {
+            todo!()
+        }
+    }
 }
