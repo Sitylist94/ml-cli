@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Sitylist94"]
 description = "Générateur de structure de projet ML/DL personnalisé"
 license = "MIT"
+repository = "https://github.com/Sitylist94/ml-cli"
 
 [dependencies]
 anyhow = "1.0.104"
@@ -22,3 +23,8 @@ walkdir = "2.5.0"
 assert_cmd = "2.2.2"
 predicates = "3.1.4"
 tempfile = "3.27.0"
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
