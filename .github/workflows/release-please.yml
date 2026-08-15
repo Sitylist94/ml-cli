@@ -17,6 +17,9 @@ jobs:
       - name: Release Please
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer a PAT so the tag push can trigger the cargo-dist Release workflow.
+          # GITHUB_TOKEN events do not start other workflows (GitHub anti-recursion).
+          # Fallback keeps release-please working until RELEASE_PLEASE_TOKEN is set.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
