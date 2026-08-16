@@ -1,4 +1,6 @@
-#[derive(Debug)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, Serialize)]
 pub enum Template {
     ScikitLearn,
     PyTorch,
@@ -12,10 +14,8 @@ pub enum TemplateStatus {
 }
 
 pub fn run(template: Template) -> TemplateStatus {
-    let status = match template {
+    match template {
         Template::ScikitLearn => TemplateStatus::Supported,
         Template::PyTorch | Template::TensorFlow => TemplateStatus::NotImplemented,
-
-    };
-    return status;
+    }
 }

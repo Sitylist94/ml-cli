@@ -1,7 +1,9 @@
 mod cli;
 mod commands;
 mod config;
+mod generator;
+mod templates;
 
-fn main() {
-    cli::run();
+fn main() -> anyhow::Result<()> {
+    cli::run()
 }
