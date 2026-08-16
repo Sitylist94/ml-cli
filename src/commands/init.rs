@@ -26,15 +26,25 @@ pub fn run() -> anyhow::Result<()> {
         .prompt()
         .unwrap();
 
-    let config = ProjectConfig {
-        name: projet_name,
-        description,
-        author,
-        template,
-        features: features.iter().map(|feature| feature.to_string()).collect(),
-    };
+    let config = build_config(projet_name, description, author, template, features);
 
     crate::generator::engine::Engine::generate(config)?;
 
     Ok(())
+}
+
+pub fn build_config(
+    name: String,
+    description: String,
+    author: String,
+    template: Template,
+    features: Vec<&str>,
+) -> ProjectConfig {
+    ProjectConfig {
+        name,
+        description,
+        author,
+        template,
+        features: features.into_iter().map(str::to_owned).collect(),
+    }
 }
