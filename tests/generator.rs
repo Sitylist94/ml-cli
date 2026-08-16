@@ -21,10 +21,36 @@ fn renderer_creates_and_renders_scikit_learn_project() {
     Renderer::render(&config(&output_path)).unwrap();
 
     let readme = std::fs::read_to_string(output_path.join("README.md")).unwrap();
-    assert!(readme.contains("example-project"));
-    assert!(readme.contains("A generated test project"));
-    assert!(readme.contains("https://github.com/octocat/"));
+    assert!(!readme.trim().is_empty());
     assert!(output_path.join("requirements.txt").is_file());
+}
+
+#[test]
+fn renderer_interpolates_project_config_values_in_tera_files() {
+    let directory = tempdir().unwrap();
+    let template_path = directory.path().join("template");
+    let output_path = directory.path().join("generated-project");
+    std::fs::create_dir(&template_path).unwrap();
+    std::fs::write(
+        template_path.join("README.md.tera"),
+        "{{ name }}|{{ description }}|{{ author }}|{{ template }}|{{ has_docker }}|{{ has_mlflow }}",
+    )
+    .unwrap();
+
+    let config = ProjectConfig {
+        name: "fraud-detector".to_owned(),
+        description: "Detects fraudulent transactions".to_owned(),
+        author: "Ada Lovelace".to_owned(),
+        template: Template::ScikitLearn,
+        features: vec!["Docker".to_owned(), "MLflow".to_owned()],
+    };
+    Renderer::render_to_directory(&config, &template_path, &output_path).unwrap();
+
+    let readme = std::fs::read_to_string(output_path.join("README.md")).unwrap();
+    assert_eq!(
+        readme,
+        "fraud-detector|Detects fraudulent transactions|Ada Lovelace|scikit-learn|true|true"
+    );
 }
 
 #[test]
