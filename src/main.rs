@@ -1,7 +1,3 @@
-mod cli;
-mod commands;
-mod config;
-
-fn main() {
-    cli::run();
+fn main() -> anyhow::Result<()> {
+    mlcli::cli::run()
 }

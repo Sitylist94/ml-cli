@@ -16,12 +16,12 @@ enum Commands {
     Template,
 }
 
-pub fn run() {
+pub fn run() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
         Commands::Init => {
-            crate::commands::init::run();
+            crate::commands::init::run()?;
         }
 
         Commands::Add => {
@@ -44,4 +44,6 @@ pub fn run() {
             todo!()
         }
     }
+
+    Ok(())
 }
