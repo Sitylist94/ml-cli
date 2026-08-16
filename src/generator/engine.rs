@@ -5,11 +5,12 @@ pub struct Engine;
 
 impl Engine {
     pub fn generate(config: ProjectConfig) -> anyhow::Result<()> {
-        let status = registry::run(config.template);
+        let status = registry::run(&config.template);
 
         match status {
             TemplateStatus::Supported => {
-                println!("Template supported, generation can start.");
+                crate::generator::renderer::Renderer::render(&config)?;
+                println!("Project '{}' generated successfully.", config.name);
                 Ok(())
             }
 

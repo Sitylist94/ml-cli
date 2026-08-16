@@ -13,7 +13,7 @@ pub enum TemplateStatus {
     NotImplemented,
 }
 
-pub fn run(template: Template) -> TemplateStatus {
+pub fn run(template: &Template) -> TemplateStatus {
     match template {
         Template::ScikitLearn => TemplateStatus::Supported,
         Template::PyTorch | Template::TensorFlow => TemplateStatus::NotImplemented,
