@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/Sitylist94/ml-cli/compare/v0.1.1...v0.2.0) (2026-08-16)
+
+
+### Features
+
+* add scikit-learn project generation ([7798196](https://github.com/Sitylist94/ml-cli/commit/7798196d4bd74af0108f8f358b72df5b89a22c04))
+
 ## [0.1.1](https://github.com/Sitylist94/ml-cli/compare/v0.1.0...v0.1.1) (2026-08-15)
 
 
