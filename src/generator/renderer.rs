@@ -1,6 +1,6 @@
 use crate::config::ProjectConfig;
 use crate::embedded_templates;
-use crate::generator::{context, filesystem};
+use crate::generator::{context, filesystem, scaffold};
 use crate::templates::registry::Template;
 use std::fs;
 use std::path::Path;
@@ -29,14 +29,14 @@ impl Renderer {
             anyhow::bail!("Embedded template not found: {folder}");
         }
 
-        Self::render_files(config, &files, Path::new(&config.name))
+        Self::render_files(config, &files, Path::new(&config.repo_name))
     }
 
     pub fn render_from_template_dir(
         config: &ProjectConfig,
         template_dir: &Path,
     ) -> anyhow::Result<()> {
-        Self::render_to_directory(config, template_dir, Path::new(&config.name))
+        Self::render_to_directory(config, template_dir, Path::new(&config.repo_name))
     }
 
     pub fn render_to_directory(
@@ -84,6 +84,8 @@ impl Renderer {
             let out_relative = strip_tera_extension(relative);
             filesystem::write_file(output_root, &out_relative, &content)?;
         }
+
+        scaffold::write(config, output_root)?;
 
         Ok(())
     }
