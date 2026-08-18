@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/Sitylist94/ml-cli/compare/v0.3.0...v0.4.0) (2026-08-18)
+
+
+### Features
+
+* improve scikit learn template ([#15](https://github.com/Sitylist94/ml-cli/issues/15)) ([d0d549f](https://github.com/Sitylist94/ml-cli/commit/d0d549fedb287c2873909f1bd86b5eee871242b2))
+
 ## [0.3.0](https://github.com/Sitylist94/ml-cli/compare/v0.2.0...v0.3.0) (2026-08-16)
 
 
